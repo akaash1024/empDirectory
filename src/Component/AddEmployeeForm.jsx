@@ -20,7 +20,7 @@ export const AddEmployeeForm = () => {
     role: ""
   });
 
-  const [errors, setErrors] = useState({});
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Reset form when editing employee changes
@@ -54,14 +54,7 @@ export const AddEmployeeForm = () => {
       [name]: value
     }));
 
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ""
-      }));
-    }
-  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,9 +72,7 @@ export const AddEmployeeForm = () => {
         // Add new employee
         addEmployee(formData);
       }
-    } catch (error) {
-      console.error("Error saving employee:", error);
-      setErrors({ submit: "Failed to save employee. Please try again." });
+    
     } finally {
       setIsSubmitting(false);
     }
@@ -111,12 +102,7 @@ export const AddEmployeeForm = () => {
             </button>
           </div>
 
-          {errors.submit && (
-            <div className="error-message global-error">
-              {errors.submit}
-            </div>
-          )}
-
+          
           <div className="form-group">
             <label htmlFor="firstName">First Name *</label>
             <input
@@ -128,9 +114,7 @@ export const AddEmployeeForm = () => {
               className={errors.firstName ? "error" : ""}
               placeholder="Enter first name"
             />
-            {errors.firstName && (
-              <span className="error-message">{errors.firstName}</span>
-            )}
+            
           </div>
 
           <div className="form-group">
@@ -144,9 +128,7 @@ export const AddEmployeeForm = () => {
               className={errors.lastName ? "error" : ""}
               placeholder="Enter last name"
             />
-            {errors.lastName && (
-              <span className="error-message">{errors.lastName}</span>
-            )}
+            
           </div>
 
           <div className="form-group">
@@ -160,9 +142,7 @@ export const AddEmployeeForm = () => {
               className={errors.email ? "error" : ""}
               placeholder="Enter email address"
             />
-            {errors.email && (
-              <span className="error-message">{errors.email}</span>
-            )}
+            
           </div>
 
           <div className="form-group">
@@ -181,9 +161,7 @@ export const AddEmployeeForm = () => {
                 </option>
               ))}
             </select>
-            {errors.department && (
-              <span className="error-message">{errors.department}</span>
-            )}
+            
           </div>
 
           <div className="form-group">
@@ -202,9 +180,7 @@ export const AddEmployeeForm = () => {
                 </option>
               ))}
             </select>
-            {errors.role && (
-              <span className="error-message">{errors.role}</span>
-            )}
+            
           </div>
 
           <div className="form-actions">
@@ -232,3 +208,4 @@ export const AddEmployeeForm = () => {
     </div>
   );
 };
+}

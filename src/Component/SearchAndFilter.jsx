@@ -27,8 +27,9 @@ export const SearchAndFilter = () => {
     setCurrentPage(1);
   };
 
-  const handleFilterChange = (field, value) => {
-    setFilters((prev) => ({ ...prev, [field]: value }));
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters((prev) => ({ ...prev, [name]: value }));
     setCurrentPage(1);
   };
 
@@ -43,7 +44,7 @@ export const SearchAndFilter = () => {
   const handleItemsPerPageChange = (e) => {
     const newItemsPerPage = parseInt(e.target.value);
     setItemsPerPage(newItemsPerPage);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
   const handlePageChange = (page) => {
@@ -56,7 +57,11 @@ export const SearchAndFilter = () => {
   };
 
   return (
-    <div className="search-filter-container">
+    <div
+      className="search-filter-container"
+      // style={{ border: "1px solid red" }}
+      
+    >
       {/* Search Bar */}
       <div className="search-section">
         <div className="search-bar">
@@ -92,11 +97,10 @@ export const SearchAndFilter = () => {
               <label htmlFor="firstNameFilter">First Name</label>
               <input
                 type="text"
+                name="firstName"
                 id="firstNameFilter"
                 value={filters.firstName}
-                onChange={(e) =>
-                  handleFilterChange("firstName", e.target.value)
-                }
+                onChange={handleFilterChange}
                 placeholder="Filter by first name"
               />
             </div>
@@ -106,9 +110,8 @@ export const SearchAndFilter = () => {
               <select
                 id="departmentFilter"
                 value={filters.department}
-                onChange={(e) =>
-                  handleFilterChange("department", e.target.value)
-                }
+                name="department"
+                onChange={handleFilterChange}
               >
                 <option value="">All Departments</option>
                 {departments.map((dept) => (
@@ -124,7 +127,8 @@ export const SearchAndFilter = () => {
               <select
                 id="roleFilter"
                 value={filters.role}
-                onChange={(e) => handleFilterChange("role", e.target.value)}
+                name="role"
+                onChange={handleFilterChange}
               >
                 <option value="">All Roles</option>
                 {roles.map((role) => (
@@ -190,7 +194,7 @@ export const SearchAndFilter = () => {
           </select>
         </div>
 
-        {totalPages > 1 && (
+        {/* {totalPages > 1 && (
           <div className="pagination-controls">
             <button
               className="btn btn-secondary"
@@ -216,6 +220,50 @@ export const SearchAndFilter = () => {
               )}
             </div>
 
+            <button
+              className="btn btn-secondary"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+          </div>
+        )} */}
+
+        {totalPages > 1 && (
+          <div className="pagination-controls">
+            {/* Previous Button */}
+            <button
+              className="btn btn-secondary"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+
+            {/* Page Numbers */}
+            <div className="page-numbers">
+              {(() => {
+                const buttons = [];
+                for (let i = 1; i <= totalPages; i++) {
+                  buttons.push(
+                    <button
+                      key={i}
+                      className={`page-btn ${
+                        currentPage === i ? "active" : ""
+                      }`}
+                      onClick={() => handlePageChange(i)}
+                    >
+                      {i}
+                    </button>
+                  );
+                }
+                return buttons;
+              })()}
+              
+            </div>
+
+            {/* Next Button */}
             <button
               className="btn btn-secondary"
               onClick={() => handlePageChange(currentPage + 1)}

@@ -27,7 +27,8 @@ export const Home = () => {
                 <div className="no-results-icon">👥</div>
                 <h3>No employees found</h3>
                 <p>
-                  {currentEmployees.length === 0 && filteredEmployees.length === 0
+                  {currentEmployees.length === 0 &&
+                  filteredEmployees.length === 0
                     ? "No employees have been added yet."
                     : "Try adjusting your search or filter criteria."}
                 </p>
@@ -42,9 +43,6 @@ export const Home = () => {
           </div>
         </section>
       </div>
-
-      {/* Employee Form Modal */}
-      <AddEmployeeForm />
     </main>
   );
 };
