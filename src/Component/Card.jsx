@@ -27,6 +27,7 @@ export const CardComponent = ({ empData }) => {
   return (
     <>
       <div className="card emp-card">
+        {/* <div className="emp-card--imgName" style={{border:"1px solid red"}}> */}
         <div className="emp-card--imgName">
           <div className="card-Container--img">
             <img src={empProfile} alt={`${firstName} ${lastName}`} />
@@ -47,7 +48,7 @@ export const CardComponent = ({ empData }) => {
 
             <div className="employee-info">
               <p className="info-item">
-                <span className="label">Department:</span> {department}
+                <span className="label">Department:</span> {department.length > 15 ? department.slice(0,10) + "..." : department}
               </p>
               <p className="info-item">
                 <span className="label">Role:</span> {role}
@@ -58,14 +59,14 @@ export const CardComponent = ({ empData }) => {
               <button
                 className="btn btn-edit"
                 onClick={handleEdit}
-                title="Edit employee"
+                title="Click to edit this employee"
               >
                 Edit
               </button>
               <button
                 className="btn btn-delete"
                 onClick={handleDelete}
-                title="Delete employee"
+                title="Click to delete this employee"
               >
                 Delete
               </button>

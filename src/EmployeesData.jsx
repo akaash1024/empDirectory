@@ -22,7 +22,7 @@ export const employees = [
     firstName: "Catherine",
     lastName: "Lee",
     email: "catherine.lee@fakemail.com",
-    department: "Human Resources",
+    department: "HR",
     role: "HR Manager",
     empProfile: "https://i.pravatar.cc/150?img=3",
   },

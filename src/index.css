@@ -236,6 +236,7 @@ textarea.error {
   align-items: flex-start;
   gap: 1.2rem;
   flex: 1;
+  position: relative;
 }
 
 .card-Container--img {
@@ -307,7 +308,12 @@ textarea.error {
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
-  
+
+  /* !nneed to work letter */
+  /* position: absolute; */
+  /* bottom: -1%; */
+  /* left: 0; */
+  /* bottom: 0; */
   
 
   
