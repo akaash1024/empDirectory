@@ -25,6 +25,8 @@ export const EMP_Provider = ({ children }) => {
   const [editingEmployee, setEditingEmployee] = useState(null);
 
   const [showForm, setShowForm] = useState(false);
+  console.log(showForm);
+  
 
   // Filter and search employees
   const filteredEmployees = useMemo(() => {

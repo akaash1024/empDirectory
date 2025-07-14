@@ -43,6 +43,8 @@ export const Home = () => {
           </div>
         </section>
       </div>
+
+      <AddEmployeeForm />
     </main>
   );
 };
